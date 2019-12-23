@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 left">
+
+        </div>
+        {% block all %} {% include 'sidebar.html' %} {% endblock all %}
+    </div>
+</div>
+{% endblock content %}

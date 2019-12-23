@@ -1,0 +1,5 @@
+{% for tag in tags %}
+{% if tag.active %}
+<a href="{% url 'tag' tag.slug %}"><span class="badge badge-info m-1 p-1">#{{tag.slug}}</span></a>
+{% endif %}
+{% endfor %}

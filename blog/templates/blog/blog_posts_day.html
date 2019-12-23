@@ -1,0 +1,16 @@
+{% extends 'blog/common.html' %}
+
+{% block blogcontent %}
+<h3>{% block title %}{{ day|date:"j F Y" }} Archive{% endblock title %}</h3>
+{% if post_list %}
+{% for post in post_list %}
+{% include 'blog/post_card_snippet.html' with post=post %}
+{% endfor %}
+{% else %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title">No Posts found</h4>
+    </div>
+</div>
+{% endif %}
+{% endblock blogcontent %}

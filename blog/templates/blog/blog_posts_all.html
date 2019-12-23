@@ -1,0 +1,20 @@
+{% extends "blog/common.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block blogcontent %}
+<h3 class="text-center">Latest Posts</h3>
+{% if latest %}
+{% for post in latest %}
+{% include 'blog/post_card_snippet.html' with post=post %}
+{% endfor %}
+{% else %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="card-title">No Posts found</h2>
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    {% block paginate %} {% include 'blog/paginate.html' %} {% endblock paginate %}
+</div>
+{% endblock blogcontent %}

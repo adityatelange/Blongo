@@ -1,0 +1,14 @@
+{% extends 'blog/common.html' %}
+
+{% block blogcontent %}
+<h1>{% block title %}Search Results for {{query}}{% endblock title %}</h1>
+{% if post_list %}
+{% for post in post_list %} {% include 'blog/post_card_snippet.html' %} {% endfor %}
+{% else %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title">No results found</h4>
+    </div>
+</div>
+{% endif %}
+{% endblock blogcontent %}

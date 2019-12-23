@@ -1,0 +1,64 @@
+{% extends 'blog/common.html' %}
+
+{% block blogcontent %}
+<div class="card">
+    <div class="card-header border-0">
+        <div class="row align-items-center">
+            <div class="col">
+                <h4 class="mb-0">{% block title %} {{ object.headline }} {% endblock title %}</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        <div class="row align-baseline rounded p-2">
+            <div class="text-muted col-md-8 p-2">
+                <a href="{% url 'author' post.author%}" class="text-muted"
+                   title="View all Posts by {{post.author}}">
+                    <i class="fa fa-user-circle"></i>
+                    <span>{{ post.author }}</span>
+                </a>
+                <span>|</span>
+                <i class="fa fa-clock"></i>
+                {% load tz %}
+                <span>{{ post.pub_date|localtime}}</span>
+            </div>
+
+            <div class="col-md-4 p-2">
+                <a class="btn-inner--icon"
+                   href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri | urlencode}}">
+                    <i class="fa fa-facebook fa-lg fa-fw" aria-hidden="true"></i>
+                </a>
+                <a class="btn-inner--icon"
+                   href="https://twitter.com/intent/tweet?&text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}">
+                    <i class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i>
+                </a>
+                <a class="btn-inner--icon"
+                   href="https://www.linkedin.com/shareArticle?mini=true&title={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}&summary={{object.summary}}&source=">
+                    <i class="fa fa-linkedin fa-lg fa-fw" aria-hidden="true"></i>
+                </a>
+                <a class="btn-inner--icon"
+                   href="whatsapp://send?text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}"><i
+                        class="fa fa-whatsapp  fa-lg fa-fw" aria-hidden="true"></i></a>
+                <a class="btn-inner--icon"
+                   href="https://telegram.me/share/url?text={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}"><i
+                        class="fa fa-telegram  fa-lg fa-fw" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="pt-2">
+            <p class="card-text ">{{ object.body | safe }}</p>
+        </div>
+    </div>
+
+
+    <div class="rounded border-0 p-3 card-footer">
+        <i class="fa fa-tags"></i>
+        {% for tag in object.tags.all %}
+        {% if tag.active %}
+        <a href="{% url 'tag' tag.slug %}"><span class="badge badge-primary">#{{tag.slug}}</span></a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock blogcontent %}

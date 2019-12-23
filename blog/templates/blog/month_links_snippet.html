@@ -1,0 +1,29 @@
+{% load i18n %}
+{% regroup dates by year as dates_by_year %}
+
+<div class="accordion" id="accordionArchive">
+    {% for month in dates_by_year %}
+
+    <div id="year{{ month.grouper }}">
+        <h6 class="mb-0">
+            <a href="{% url 'archive-year' month.grouper %}">{{ month.grouper }}</a>
+            <button class="btn btn-link {% if not forloop.first %}collapsed{% endif %}" type="button"
+                    data-toggle="collapse" data-target="#collapse_year{{ month.grouper }}"
+                    aria-controls="collapse_year{{ month.grouper }}">
+
+                <i class="fa fa-plus"></i>
+            </button>
+        </h6>
+    </div>
+
+    <div id="collapse_year{{ month.grouper }}" class="collapse {% if forloop.first %}show{% endif %}"
+         aria-labelledby="heading-year{{ month.grouper }}" data-parent="#accordionArchive">
+        {% for d in month.list %}
+        <div class="card-body  p-0 pl-5">
+            <a href="{% url 'archive-month' d|date:'Y' d|date:'b' %}">{{ d|date:"F Y" }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+</div>

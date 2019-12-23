@@ -1,0 +1,37 @@
+.topic-tag {
+    display: inline-block;
+    padding: .3em .9em;
+    margin: 0 .5em .5em 0;
+    white-space: nowrap;
+    background-color: #f1f8ff;
+    border-radius: 3px;
+}
+
+.image-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+}
+
+.image-wrapper img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 75px;
+  right: 30px;
+  z-index: 99;
+}
+
+#load{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:9999;
+    background: no-repeat center center rgba(0,0,0,0.25)
+}

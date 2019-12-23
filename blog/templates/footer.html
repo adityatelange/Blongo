@@ -1,0 +1,37 @@
+<div class="card-body d-flex justify-content-end">
+    <a href="#top">
+        <button class="btn btn-secondary btn-sm border" id="myBtn" type="button">
+            <span class="btn-inner--icon"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+            <span class="btn-inner--text">GO UP</span>
+        </button>
+    </a>
+</div>
+<!-- Footer -->
+<footer class="footer border-top mt-auto py-3">
+    <div class="container">
+        <div class="row align-items-center ">
+            <div class="col-md-2">
+                <div class="copyright text-center text-xl-left text-muted">
+                    &copy; <a href="{% url 'index' %}" class="font-weight-bold ml-1" target="_blank">Blog Name</a>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                    <li class="nav-item">
+                        <a href="{% url 'sitemap' %}" class="nav-link" target="">sitemap.xml</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'about' %}" class="nav-link" target="">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" target="_blank">Another Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"
+                           class="nav-link" target="_blank">MIT License</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,36 @@
+<div class="card mt-3 mb-3">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h5 class="mb-0">
+                    <a class="text-body" href="{% url 'post_detail' post.slug  %}">
+                        {{ post.headline }}
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card-text text-muted">
+            <a href="{% url 'author' post.author%}" class="text-muted" title="View all Posts by {{post.author}}">
+                <i class="fa fa-user-circle"></i>
+                <span>{{ post.author }}</span>
+            </a>
+            <span>|</span>
+            <i class="fa fa-clock-o"></i>
+            <span>{{ post.pub_date }}</span>
+        </div>
+        <div class="pt-2 pb-2">
+            {% if post.summary %}
+            <p class="card-text">{{ post.summary }}</p>
+            {% else %}
+            <p class="card-text">{{ post.body|slice:":200" }}</p>
+
+            {% endif %}
+        </div>
+        <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary btn-sm ">
+            Read More
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div>

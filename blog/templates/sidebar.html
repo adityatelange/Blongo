@@ -1,0 +1,40 @@
+{% block sidebar %}
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right">
+    <div class="my-6">
+        <div>
+            <div class="card-body p-2">Don’t find what you are looking for?</div>
+            <!-- Search Form -->
+            <form action="{% url 'search' %}" method="get">
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-4">
+                        <input name="q" required type="search" placeholder="Search" class="form-control">
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text btn btn-link"><i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Form ends -->
+        </div>
+        {% load blog %}
+        <div class="card-body mt-2">
+            <a href="{% url 'feeds' %}">
+                <button class="btn btn-icon btn-3 " type="button">
+                    <span class="btn-inner--icon"><i class="fa fa-rss" aria-hidden="true"></i></span>
+                    <span class="btn-inner--text">RSS FEED</span>
+                </button>
+            </a>
+        </div>
+        <div class="card-body rounded mt-2 p-2">
+            <h3><span>Archives</span></h3>
+            {% render_month_links %}
+        </div>
+        <div class="card-body rounded mt-2 p-2">
+            <h3><span>Tags</span></h3>
+            {% render_tag_links %}
+        </div>
+    </div>
+</div>
+{% endblock sidebar %}
