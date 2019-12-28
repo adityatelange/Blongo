@@ -1,5 +1,5 @@
 """
-Django settings for blogsite project.
+Django settings for blongo project.
 """
 
 import os
@@ -22,7 +22,7 @@ INSTALLED_APPS = [
 ]
 
 
-ROOT_URLCONF = 'blogsite.urls'
+ROOT_URLCONF = 'blongo.urls'
 
 TEMPLATES = [
     {
@@ -41,7 +41,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'blogsite.wsgi.application'
+WSGI_APPLICATION = 'blongo.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
