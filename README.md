@@ -30,5 +30,7 @@ Blongo is an open-source Blog Web-App built on the Django Web Framework 2.x with
     `python manage.py migrate`
  6. Create a superuser
     `python manage.py createsuperuser`
- 7. Run Server
+ 7. Create default Blog config 
+    `python manage.py initialize_blog`
+ 8. Run Server
     `python manage.py runserver`
