@@ -27,10 +27,10 @@
 
 ### Installation
 
-##### To run Locally:
+##### To run Locally/Dev:
  1. Create a Python-3.x Virtual Environment [Creating Virtual Environments](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments)
  2. Install dependencies:
-    `pip install -r requirements.txt`
+    `pip install -r requirements/dev.txt`
  3. Create a `.env` file with required environment variables (Sample -> [sample.env](sample.env))
  4. Create database schema
     `python manage.py makemigrations blog`
