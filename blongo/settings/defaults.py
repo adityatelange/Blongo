@@ -19,8 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'django.contrib.sitemaps',
+    'trix',
 ]
-
 
 ROOT_URLCONF = 'blongo.urls'
 

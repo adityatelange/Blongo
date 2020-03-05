@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from trix.fields import TrixField
 
 
 class TagManager(models.Manager):
@@ -37,7 +38,7 @@ class Post(models.Model):
     headline = models.CharField(max_length=200, unique=True, help_text="Headline for the Post")
     author = models.ForeignKey(User, default=User, on_delete=models.CASCADE, related_name='blog_posts')
     summary = models.TextField(blank=True, max_length=200)
-    body = models.TextField()
+    body = TrixField('Body')
     tags = models.ManyToManyField(Tag, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
