@@ -27,11 +27,3 @@
   right: 30px;
   z-index: 99;
 }
-
-#load{
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index:9999;
-    background: no-repeat center center rgba(0,0,0,0.25)
-}
