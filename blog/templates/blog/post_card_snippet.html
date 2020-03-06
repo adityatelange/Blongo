@@ -22,9 +22,9 @@
         </div>
         <div class="pt-2 pb-2">
             {% if post.summary %}
-            <p class="card-text">{{ post.summary }}</p>
+            <p class="card-text">{{ post.summary | safe }}</p>
             {% else %}
-            <p class="card-text">{{ post.body|slice:":200" }}</p>
+            <p class="card-text">{{ post.body|slice:":200" | safe }}</p>
 
             {% endif %}
         </div>
