@@ -3,7 +3,7 @@
 <div class="container pt-4 p-1">
     <div class="row">
         <div class="col-md-8 mt-3 left my-4">
-
+            {{ blog_conf.about_us | safe }}
         </div>
         {% block sidebar %} {% endblock sidebar %}
     </div>

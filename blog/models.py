@@ -87,7 +87,9 @@ class BlogConfig(models.Model):
             'Paste BootsWatch theme URL here'
             ' <a target="_blank" href="https://www.bootstrapcdn.com/bootswatch/">GET THEME URL</a>'
         )),
-    default="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+        default="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+
+    about_us = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.__class__.objects.count():

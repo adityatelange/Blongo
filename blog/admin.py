@@ -37,8 +37,9 @@ class TagAdmin(admin.ModelAdmin):
         return list(self.readonly_fields) + ["slug", "name"]
 
 
-class BlogConfigAdmin(admin.ModelAdmin):
-    list_display = ("blog_name", "bootswatch_theme")
+class BlogConfigAdmin(TrixAdmin, admin.ModelAdmin):
+    list_display = ("blog_name",)
+    trix_fields = ('about_us',)
 
 
 admin.site.register(Post, PostAdmin)
