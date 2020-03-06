@@ -1,18 +1,20 @@
 from django.contrib import admin
 
 from .models import Post, Tag, BlogConfig
+from trix.admin import TrixAdmin
 
 admin.site.site_header = "Blog Admin"
 admin.site.site_title = "Blog Admin"
 admin.site.index_title = "Welcome to Blog Admin Dashboard"
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TrixAdmin, admin.ModelAdmin):
     list_display = ('headline', 'views', 'slug', 'active', 'pub_date')
     list_filter = ("active", "pub_date",)
-    search_fields = ['headline', 'content']
+    search_fields = ['headline', 'body']
     prepopulated_fields = {'slug': ('headline',)}
     autocomplete_fields = ("tags",)
+    trix_fields = ('body',)
 
     actions = ["mark_active", "mark_inactive"]
 
