@@ -5,14 +5,17 @@
     <div class="card-header border-0 rounded">
         <div class="row align-items-center">
             <div class="col">
-                <h1 class="mb-0"><b>{% block title %} {{ object.headline }} {% endblock title %}</b></h1>
+                <h2 class="mb-0" title="{{ object.headline }}"><b>{% block title %} {{ object.headline }} {% endblock title %}</b></h2>
             </div>
         </div>
     </div>
 
 
     <div class="card-body">
-        <div class="row align-baseline rounded p-2">
+        <div class="shadow text-center" id="cover">
+            <img class="rounded img-fluid " src="{{  object.cover.url }}" alt="Thumbnail for {{ object.headline }}" title="Thumbnail for {{ object.headline }}">
+        </div>
+        <div class="row align-baseline rounded p-2 mt-2">
             <div class="text-muted col-md-8 p-2">
                 <a href="{% url 'author' post.author%}" class="text-muted"
                    title="View all Posts by {{post.author}}">

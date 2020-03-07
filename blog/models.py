@@ -37,6 +37,7 @@ class Post(models.Model):
     headline = models.CharField(max_length=200, unique=True, help_text="Headline for the Post")
     author = models.ForeignKey(User, default=User, on_delete=models.CASCADE, related_name='blog_posts')
     summary = models.TextField(blank=True, max_length=200)
+    cover = models.ImageField(upload_to='cover_images/')
     body = models.TextField()
     tags = models.ManyToManyField(Tag, blank=True)
     updated_on = models.DateTimeField(auto_now=True)

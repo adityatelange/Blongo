@@ -1,21 +1,33 @@
 from django.contrib import admin
+from trix.admin import TrixAdmin
 
 from .models import Post, Tag, BlogConfig
-from trix.admin import TrixAdmin
+from .widgets import IMUEditor
 
 admin.site.site_header = "Blog Admin"
 admin.site.site_title = "Blog Admin"
 admin.site.index_title = "Welcome to Blog Admin Dashboard"
 
 
-class PostAdmin(TrixAdmin, admin.ModelAdmin):
+class IMUAdmin(object):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+
+        if not hasattr(self, 'imu_fields'):
+            raise ValueError('imu_fields is required on model')
+
+        if db_field.name in self.imu_fields:
+            return db_field.formfield(widget=IMUEditor())
+        return super(IMUAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+
+
+class PostAdmin(TrixAdmin, IMUAdmin, admin.ModelAdmin):
     list_display = ('headline', 'views', 'slug', 'active', 'pub_date')
     list_filter = ("active", "pub_date",)
     search_fields = ['headline', 'body']
     prepopulated_fields = {'slug': ('headline',)}
     autocomplete_fields = ("tags",)
     trix_fields = ('body',)
-
+    imu_fields = ('cover',)
     actions = ["mark_active", "mark_inactive"]
 
     def mark_active(self, request, queryset):

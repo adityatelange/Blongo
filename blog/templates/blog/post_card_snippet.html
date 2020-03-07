@@ -1,5 +1,10 @@
 <div class="card mt-3 mb-3 border-0 border-bottom">
-    <div class="card-header border-0 rounded">
+    <div class="row">
+        <div class="col-md-4 p-1">
+            <img class="rounded img-fluid " src="{{ post.cover.url }}" alt="Thumbnail for {{ object.headline }}" title="Thumbnail for {{ object.headline }}">
+        </div>
+        <div class="col-md-8 p-1">
+            <div class="card-header border-0 rounded">
         <div class="row align-items-center">
             <div class="col">
                 <h5 class="mb-0">
@@ -24,7 +29,7 @@
             {% if post.summary %}
             <p class="card-text">{{ post.summary }}</p>
             {% else %}
-            <p class="card-text">{{ post.body|slice:":200" }}</p>
+            <p class="card-text">{{ post.body|slice:":50" }}</p>
 
             {% endif %}
         </div>
@@ -33,4 +38,7 @@
             <i class="fa fa-angle-right"></i>
         </a>
     </div>
+        </div>
+    </div>
+
 </div>
