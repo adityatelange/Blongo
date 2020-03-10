@@ -71,3 +71,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+TRIX_URI = 'trix'
+TRIX_EXTENSIONS = ['.jpg', '.png']
