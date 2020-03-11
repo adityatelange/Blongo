@@ -1,44 +1,27 @@
-<div class="card mt-3 mb-3 border-0 border-bottom">
-    <div class="row">
-        <div class="col-md-4 p-1">
-            <img class="rounded img-fluid " src="{{ post.cover.url }}" alt="Thumbnail for {{ object.headline }}" title="Thumbnail for {{ object.headline }}">
-        </div>
-        <div class="col-md-8 p-1">
-            <div class="card-header border-0 rounded">
-        <div class="row align-items-center">
-            <div class="col">
-                <h5 class="mb-0">
-                    <a class="text-body" href="{% url 'post_detail' post.slug  %}">
-                        {{ post.headline }}
-                    </a>
-                </h5>
-            </div>
-        </div>
-    </div>
-    <div class="card-body border-bottom">
-        <div class="card-text text-muted">
-            <a href="{% url 'author' post.author%}" class="text-muted" title="View all Posts by {{post.author}}">
-                <i class="fa fa-user-circle"></i>
-                <span>{{ post.author }}</span>
-            </a>
-            <span>|</span>
-            <i class="fa fa-clock-o"></i>
-            <span>{{ post.pub_date }}</span>
-        </div>
-        <div class="pt-2 pb-2">
-            {% if post.summary %}
-            <p class="card-text">{{ post.summary }}</p>
-            {% else %}
-            <p class="card-text">{{ post.body|slice:":50" }}</p>
-
-            {% endif %}
-        </div>
-        <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary btn-sm ">
-            Read More
-            <i class="fa fa-angle-right"></i>
+<div class="row mb-5 shadow-sm equal m-1">
+    <div class="col-md-5 border-0 p-0 ">
+        <a href="{% url 'post_detail' post.slug  %}">
+            <img class="rounded " src="{{ post.cover.url }}"
+                 alt="Thumbnail for {{ post.headline }}" title="Thumbnail for {{ post.headline }}">
         </a>
     </div>
+    <div class="col-md-7 border-0 p-0">
+        <div class="card-header bg-white border-0" style="font-size:2vw;">
+            <h5>
+                <a class="text-body " href="{% url 'post_detail' post.slug  %}">
+                    {{ post.headline }}
+                </a>
+            </h5>
+        </div>
+        <div class="card-body pt-0">
+            <div class="">{% autoescape on %}
+                {% if post.summary %}
+                <p class="card-text">{{ post.summary | striptags }}</p>
+                {% else %}
+                <p class="card-text">{{ post.body | striptags | slice:"200" }} ... </p>
+                {% endif %}
+            </div>
+            {% endautoescape %}
         </div>
     </div>
-
 </div>

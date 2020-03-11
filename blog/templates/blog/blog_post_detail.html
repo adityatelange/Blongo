@@ -1,61 +1,57 @@
 {% extends 'blog/common.html' %}
 
 {% block blogcontent %}
-<div class="card border-0">
-    <div class="card-header border-0 rounded">
-        <div class="row align-items-center">
-            <div class="col">
-                <h2 class="mb-0" title="{{ object.headline }}"><b>{% block title %} {{ object.headline }} {% endblock title %}</b></h2>
-            </div>
+<div class="card border-0 ">
+    <div class="card-header bg-white border-0 rounded p-0 m-1">
+        <h2 title="{{ object.headline }}" align="center">
+            <b>{% block title %} {{ object.headline }} {% endblock title %}</b>
+        </h2>
+    </div>
+    <div class="card-img-top p-2" id="cover">
+        <img class="rounded shadow img-fluid " src="{{  object.cover.url }}" alt="Thumbnail for {{ object.headline }}"
+             title="Thumbnail for {{ object.headline }}">
+    </div>
+    <div class="row align-baseline rounded p-2 m-2 shadow-sm">
+        <div class="text-muted col-md-6 p-2" align="center">
+            <a href="{% url 'author' post.author%}" class="text-muted"
+               title="View all Posts by {{post.author}}">
+                <i class="fa fa-user-circle"></i>
+                <span>{{ post.author }}</span>
+            </a>
+            <span>|</span>
+            <i class="fa fa-clock"></i>
+            {% load tz %}
+            <span>{{ post.pub_date|localtime}}</span>
+        </div>
+
+        <div class="col-md-6 p-2" align="center">
+            <a class="btn-inner--icon"
+               href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri | urlencode}}">
+                <i class="fa fa-facebook fa-lg fa-fw" aria-hidden="true"></i>
+            </a>
+            <a class="btn-inner--icon"
+               href="https://twitter.com/intent/tweet?&text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}">
+                <i class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i>
+            </a>
+            <a class="btn-inner--icon"
+               href="https://www.linkedin.com/shareArticle?mini=true&title={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}&summary={{object.summary}}&source=">
+                <i class="fa fa-linkedin fa-lg fa-fw" aria-hidden="true"></i>
+            </a>
+            <a class="btn-inner--icon"
+               href="whatsapp://send?text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}"><i
+                    class="fa fa-whatsapp  fa-lg fa-fw" aria-hidden="true"></i></a>
+            <a class="btn-inner--icon"
+               href="https://telegram.me/share/url?text={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}"><i
+                    class="fa fa-telegram  fa-lg fa-fw" aria-hidden="true"></i></a>
         </div>
     </div>
 
-
-    <div class="card-body">
-        <div class="shadow text-center" id="cover">
-            <img class="rounded img-fluid " src="{{  object.cover.url }}" alt="Thumbnail for {{ object.headline }}" title="Thumbnail for {{ object.headline }}">
-        </div>
-        <div class="row align-baseline rounded p-2 mt-2">
-            <div class="text-muted col-md-8 p-2">
-                <a href="{% url 'author' post.author%}" class="text-muted"
-                   title="View all Posts by {{post.author}}">
-                    <i class="fa fa-user-circle"></i>
-                    <span>{{ post.author }}</span>
-                </a>
-                <span>|</span>
-                <i class="fa fa-clock"></i>
-                {% load tz %}
-                <span>{{ post.pub_date|localtime}}</span>
-            </div>
-
-            <div class="col-md-4 p-2">
-                <a class="btn-inner--icon"
-                   href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri | urlencode}}">
-                    <i class="fa fa-facebook fa-lg fa-fw" aria-hidden="true"></i>
-                </a>
-                <a class="btn-inner--icon"
-                   href="https://twitter.com/intent/tweet?&text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}">
-                    <i class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i>
-                </a>
-                <a class="btn-inner--icon"
-                   href="https://www.linkedin.com/shareArticle?mini=true&title={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}&summary={{object.summary}}&source=">
-                    <i class="fa fa-linkedin fa-lg fa-fw" aria-hidden="true"></i>
-                </a>
-                <a class="btn-inner--icon"
-                   href="whatsapp://send?text={{object.headline| urlencode}} - {{request.build_absolute_uri | urlencode}}"><i
-                        class="fa fa-whatsapp  fa-lg fa-fw" aria-hidden="true"></i></a>
-                <a class="btn-inner--icon"
-                   href="https://telegram.me/share/url?text={{object.headline| urlencode}}&url={{request.build_absolute_uri | urlencode}}"><i
-                        class="fa fa-telegram  fa-lg fa-fw" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="pt-2">
-            <p class="card-text ">{{ object.body | safe }}</p>
-        </div>
+    <div class="card-text pt-2">
+        <p class="">{{ object.body | safe }}</p>
     </div>
 
 
-    <div class="rounded border-0 p-3 card-footer">
+    <div class="rounded border-0 card-footer bg-white">
         <i class="fa fa-tags"></i>
         {% for tag in object.tags.all %}
         {% if tag.active %}
