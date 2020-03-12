@@ -6,9 +6,45 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 
+class BlogConfig(models.Model):
+    blog_name = models.CharField(max_length=16, default='BlogName')
+    bootswatch_theme = models.URLField(
+        help_text=_(mark_safe(
+            'Paste BootsWatch theme URL here'
+            ' <a target="_blank" href="https://www.bootstrapcdn.com/bootswatch/">GET THEME URL</a>'
+        )),
+        default="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+
+    about_us = models.TextField()
+
+    def save(self, *args, **kwargs):
+        if self.__class__.objects.count():
+            self.pk = self.__class__.objects.first().pk
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.blog_name
+
+    class Meta:
+        verbose_name_plural = 'BlogConfig'
+
+
+class ActiveManager(models.Manager):
+    def active(self):
+        return self.filter(active=True)
+
+
 class TagManager(models.Manager):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
+
+
+class PostQuerySet(models.QuerySet):
+    def published(self):
+        return self.active().filter(created_on__lte=timezone.now())
+
+    def active(self):
+        return self.filter(active=True)
 
 
 class Tag(models.Model):
@@ -23,14 +59,6 @@ class Tag(models.Model):
 
     def natural_key(self):
         return self.slug
-
-
-class PostQuerySet(models.QuerySet):
-    def published(self):
-        return self.active().filter(created_on__lte=timezone.now())
-
-    def active(self):
-        return self.filter(active=True)
 
 
 class Post(models.Model):
@@ -74,31 +102,3 @@ class Post(models.Model):
     def view_incr(self):
         self.views += 1
         self.save(update_fields=['views'])
-
-
-class ActiveManager(models.Manager):
-    def active(self):
-        return self.filter(active=True)
-
-
-class BlogConfig(models.Model):
-    blog_name = models.CharField(max_length=16, default='BlogName')
-    bootswatch_theme = models.URLField(
-        help_text=_(mark_safe(
-            'Paste BootsWatch theme URL here'
-            ' <a target="_blank" href="https://www.bootstrapcdn.com/bootswatch/">GET THEME URL</a>'
-        )),
-        default="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
-
-    about_us = models.TextField()
-
-    def save(self, *args, **kwargs):
-        if self.__class__.objects.count():
-            self.pk = self.__class__.objects.first().pk
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.blog_name
-
-    class Meta:
-        verbose_name_plural = 'BlogConfig'
