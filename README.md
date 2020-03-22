@@ -13,7 +13,6 @@
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/github/contributors/adityhere/Blongo.svg)](https://github.com/adityhere/Blongo/graphs/contributors)
 ![](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)
-[![HitCount](http://hits.dwyl.com/adityatelange/Blongo.svg)](http://hits.dwyl.com/adityatelange/Blongo)
 
 #### Features
 * Generation of Atom and RSS feeds
