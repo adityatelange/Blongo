@@ -17,11 +17,19 @@
 #### Features
 * Generation of Atom and RSS feeds
 * Generation of Sitemaps
+* Post View Count
+* Archive List with Yearly and Monthly categorization
+* Tags for post
+* [Trix](https://github.com/basecamp/trix) Rich Text Editor For Post Content
+* Thumbnail/Cover Image for Post(supports image compression)
+* Blog Configuration
+* [Bootswatch 4 themes](https://www.bootstrapcdn.com/bootswatch/) (themes based on Bootstrap)
 
 #### Dependencies
-* Django
+* [Django](https://pypi.org/project/Django/)
 * pytz
 * whitenoise
+* [django-trix-fork](https://pypi.org/project/django-trix-fork/)
 
 ## Documentation
 
